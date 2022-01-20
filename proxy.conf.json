@@ -1,0 +1,7 @@
+{
+  "/api": {
+    "target": "https://flexcharactersheet.herokuapp.com",
+    "secure": true,
+    "changeOrigin": true
+  }
+}

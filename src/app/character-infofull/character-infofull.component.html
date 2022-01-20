@@ -1,0 +1,30 @@
+<div id="character-container">
+<mat-tab-group>
+  <mat-tab>
+    <ng-template mat-tab-label>
+      <span>Персонаж</span>
+    </ng-template>
+    <div *ngIf="curCharacter">
+      Выбран персонаж {{curCharacter.name}}
+    </div>
+  </mat-tab>
+  <mat-tab>
+    <ng-template mat-tab-label>
+      <span>Навыки</span>
+    </ng-template>
+    Content 2
+  </mat-tab>
+  <mat-tab>
+    <ng-template mat-tab-label>
+      <span>Заклинания</span>
+    </ng-template>
+    Content 3
+  </mat-tab>
+  <mat-tab>
+    <ng-template mat-tab-label>
+      <span>Инвентарь</span>
+    </ng-template>
+    Content 4
+  </mat-tab>
+</mat-tab-group>
+</div>

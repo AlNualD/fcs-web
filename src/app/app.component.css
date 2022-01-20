@@ -1,0 +1,21 @@
+div#mainContainer{
+  height: auto;
+  margin: 0 auto;
+  border: black 4px;
+  justify-content: center;
+  display: flex;
+}
+
+app-character-list{
+  display: block;
+  justify-content: center;
+}
+
+app-character-infofull {
+  width: 800px;
+  background: rosybrown;
+}
+
+h1 {
+  text-align: center;
+}

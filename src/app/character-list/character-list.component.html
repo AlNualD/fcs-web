@@ -1,0 +1,7 @@
+<p>character-list works!</p>
+<div id="c-list">
+<mat-card *ngFor="let character of characters" (click)="onCardClick(character)">
+    <mat-card-header>{{character.name}}</mat-card-header>
+    <mat-card-content>{{character.race}}   {{character.classC}}</mat-card-content>
+</mat-card>
+</div>
