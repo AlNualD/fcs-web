@@ -1,0 +1,24 @@
+:host{
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+.list {
+  min-width: 300px;
+}
+
+.main-container {
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  justify-content: center;
+}
+
+.fly {
+  position: relative;
+  left: 80px;
+  bottom: 20px;
+  width: 180px;
+  height: 40px;
+}
