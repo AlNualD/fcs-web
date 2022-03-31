@@ -3,6 +3,14 @@ import {HttpClient} from "@angular/common/http";
 import {Character} from "./models/character";
 import { Urls } from "./urls";
 
+interface AuthRequest {
+  login : string;
+  password: string;
+}
+
+interface AuthResponse {
+
+}
 
 @Injectable({
   providedIn: 'root'

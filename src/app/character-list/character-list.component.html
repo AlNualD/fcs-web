@@ -1,7 +1,18 @@
-<p>character-list works!</p>
-<div id="c-list">
+<p>Персонажи</p>
+<button
+  mat-flat-button
+  color="primary"
+  (click)="onAddCharacterButtonClick()"
+>
+  Добавить
+</button>
+<div id="c-list" *ngIf="characters.length; else empty">
 <mat-card *ngFor="let character of characters" (click)="onCardClick(character)">
     <mat-card-header>{{character.name}}</mat-card-header>
     <mat-card-content>{{character.race}}   {{character.classC}}</mat-card-content>
 </mat-card>
 </div>
+
+<ng-template #empty>
+  <p>Ой, тут пусто!</p>
+</ng-template>

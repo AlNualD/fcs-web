@@ -1,6 +1,10 @@
 import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 import { Character } from '../services/models/character';
 import {CharacterInfoProviderService} from "../services/character-info-provider.service";
+import {CharacterService} from "../services/character.service";
+import {MatDialog} from "@angular/material/dialog";
+import {ChooseDialogComponent} from "../create-character/choose.dialog/choose-dialog.component";
+import {Router} from "@angular/router";
 
 @Component({
   selector: 'app-character-list',
@@ -13,11 +17,12 @@ export class CharacterListComponent implements OnInit {
 
   characters: Character[] = [];
 
-  @Input() curCharacter: Character | undefined;
-  @Output() curCharacterChange = new EventEmitter<Character>();
+  //@Input() curCharacter: Character | undefined;
+ // @Output() curCharacterChange = new EventEmitter<Character>();
   onCharacterChange(c : Character) {
-    this.curCharacter = c;
-    this.curCharacterChange.emit(c);
+    this.curCharacterService.nextCharacter(c)
+    // this.curCharacter = c;
+    // this.curCharacterChange.emit(c);
   }
 
 
@@ -25,7 +30,10 @@ export class CharacterListComponent implements OnInit {
     this.onCharacterChange(c);
   }
 
-  constructor(private characterService : CharacterInfoProviderService) { }
+  constructor(private characterService : CharacterInfoProviderService,
+              private curCharacterService : CharacterService,
+              public dialog: MatDialog,
+              private router: Router) { }
 
   userId: number = 1;
 
@@ -34,4 +42,15 @@ export class CharacterListComponent implements OnInit {
     console.log(this.characters.length)
   }
 
+  onAddCharacterButtonClick() {
+    const dialogRef = this.dialog.open(ChooseDialogComponent, {
+      width: '250px',
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      console.log('The dialog was closed');
+      const template = result;
+      this.router.navigate(['create',template])
+    });
+  }
 }

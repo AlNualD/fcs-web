@@ -1,5 +1,11 @@
+:host{
+  min-height: 400px;
+
+}
+
 div#c-list{
   display: block;
+  width: 300px;
 }
 
 mat-card{
