@@ -1,17 +1,41 @@
 import {Attribute} from "./attribute";
 
-export class Skill{
-  constructor(
-    public id: number,
-    public trainCoefficient: number,
-    public canBeTrained:	boolean,
-    public attribute: Attribute,
-    public value: number,
-    public name:	string,
-    public definition:	string,
-    public description:	string,
-    public favorite:	boolean,
-    public trait:	boolean
-  ) {
+export interface Skill{
+     id: number,
+     trainCoefficient: number,
+     canBeTrained:	boolean,
+     attribute?: Attribute,
+     value: number,
+     name:	string,
+     definition:	string,
+     description:	string,
+     favorite:	boolean,
+     trait:	boolean
+
+}
+
+export interface SkillUpdate {
+  trainCoefficient: number,
+  canBeTrained: boolean,
+  value: number,
+  name: string,
+  definition: string,
+  description: string,
+  favorite: boolean,
+  trait: boolean
+}
+
+export function EmptySkill () : Skill {
+  return {
+    id: -1,
+    name: "",
+    value: 0,
+    trainCoefficient: 0,
+    trait: false,
+    canBeTrained: false,
+    description: "",
+    definition: "",
+    attribute: undefined,
+    favorite: false,
   }
 }

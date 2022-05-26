@@ -19,3 +19,34 @@ export class Character {
   }
 
 }
+export interface CharacterGet {
+  id:number,
+  name: string,
+  classC: string,
+  race: string,
+  lvl: number,
+  healthDice: number,
+  hp_max: number,
+  hp_cur: number,
+  alignment:	string,
+  spells_total: number,
+  money: number,
+  description: string,
+  url:	string,
+  profBonus: number
+}
+export interface CharacterUpdate {
+  name: string,
+  classC: string,
+  race: string,
+  lvl: number,
+  healthDice: number,
+  hp_max: number,
+  hp_cur: number,
+  alignment:	string,
+  spells_total: number,
+  money: number,
+  description: string,
+  url:	string,
+  profBonus: number
+}
