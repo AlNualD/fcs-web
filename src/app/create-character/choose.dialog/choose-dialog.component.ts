@@ -1,4 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, Inject, OnInit} from '@angular/core';
+import {FormControl} from "@angular/forms";
+import {MAT_DIALOG_DATA, MatDialogRef} from "@angular/material/dialog";
 
 @Component({
   selector: 'app-choose.dialog',
@@ -8,9 +10,17 @@ import { Component, OnInit } from '@angular/core';
 export class ChooseDialogComponent implements OnInit {
 
   public templates: string[] = ["DnD", "Custom"]
-  constructor() { }
+  public curTemplate = "DnD";
 
-  ngOnInit(): void {
+  constructor(    public dialogRef: MatDialogRef<ChooseDialogComponent>,
+                  @Inject(MAT_DIALOG_DATA) public data: string,) { }
+
+  ngOnInit(
+
+  ): void {
   }
 
+  onButtonClick() {
+      this.dialogRef.close();
+  }
 }

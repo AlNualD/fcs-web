@@ -1,10 +1,19 @@
-<h2>Choose template</h2>
-<h4>Basic mat-select</h4>
-<mat-form-field appearance="fill">
-  <mat-label>Favorite food</mat-label>
-  <mat-select>
-    <mat-option *ngFor="let template of templates" [value]="template">
-      {{template}}
-    </mat-option>
-  </mat-select>
-</mat-form-field>
+<div class="dialog-wrapper">
+  <h2>Выберите шаблон</h2>
+  <mat-form-field appearance="fill">
+    <mat-label>шаблон</mat-label>
+    <mat-select [(ngModel)]="curTemplate">
+      <mat-option *ngFor="let template of templates" [value]="template" >
+        {{template}}
+      </mat-option>
+    </mat-select>
+  </mat-form-field>
+  <button
+    mat-flat-button
+    color="primary"
+    [mat-dialog-close]="curTemplate"
+    cdkFocusInitial
+  >
+    Добавить
+  </button>
+</div>

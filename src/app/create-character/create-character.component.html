@@ -1,1 +1,9 @@
-<p>create-character works!</p>
+<ng-container [ngSwitch]="template">
+  <div *ngSwitchCase="templates[0]">
+    <app-custom-create-character [cid]="cid"></app-custom-create-character>
+  </div
+  >
+  <div *ngSwitchCase="templates[1]">
+    <app-dnd-create-character></app-dnd-create-character>
+  </div>
+</ng-container>
