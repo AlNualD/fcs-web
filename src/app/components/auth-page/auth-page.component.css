@@ -4,14 +4,6 @@
   justify-content: center;
 }
 
-.label {
-  color: var(--primary-color-2);
-}
-.primary-input{
-  width: 300px;
-  color: var(--primary-color)
-}
-
 .auth-button {
   margin: 5px;
   padding: 5px;

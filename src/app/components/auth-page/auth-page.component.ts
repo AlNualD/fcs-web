@@ -71,6 +71,9 @@ export class AuthPageComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    if(this.authService.checkAuth()) {
+      this.router.navigate(['/main']);
+    }
     this.authService.status.subscribe(
       value => {
         this.status = value;
