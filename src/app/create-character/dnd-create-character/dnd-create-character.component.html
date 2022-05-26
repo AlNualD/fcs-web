@@ -1,0 +1,94 @@
+<form class="creation-main-container" [formGroup]="customForm">
+  <mat-form-field
+    class="primary-input"
+    appearance="outline">
+    <mat-label class="label">Имя</mat-label>
+    <input
+      class="primary-input"
+      formControlName="name"
+      matInput
+      placeholder="Введите имя персонажа">
+    <mat-error *ngIf="customForm.get('name')?.invalid">Ошибка</mat-error>
+  </mat-form-field>
+
+
+  <mat-form-field
+    class="primary-input"
+    appearance="outline"
+  >
+    <mat-label class="label">Раса</mat-label>
+    <mat-select formControlName="race">
+      <mat-option *ngFor="let race of races$ | async" [value]="race" >
+        {{race}}
+      </mat-option>
+    </mat-select>
+    <mat-error *ngIf="customForm.get('race')?.invalid">Ошибка</mat-error>
+  </mat-form-field>
+
+
+  <mat-form-field
+    class="primary-input"
+    appearance="outline">
+    <mat-label class="label">Класс</mat-label>
+    <mat-select formControlName="classC">
+      <mat-option *ngFor="let class of classes$ | async" [value]="class" >
+        {{class}}
+      </mat-option>
+    </mat-select>
+    <mat-error *ngIf="customForm.get('classC')?.invalid">Ошибка</mat-error>
+  </mat-form-field>
+
+  <mat-form-field
+    class="primary-input"
+    appearance="outline">
+    <mat-label class="label">Мировоззрение</mat-label>
+    <input
+      class="primary-input"
+      matInput
+      placeholder="Введите мировоззрение персонажа"
+      formControlName="alignment"
+    >
+    <mat-error *ngIf="customForm.get('alignment')?.invalid">Ошибка</mat-error>
+  </mat-form-field>
+
+<!--  <mat-form-field-->
+<!--    class="primary-input"-->
+<!--    appearance="outline">-->
+<!--    <mat-label class="label">Здоровье</mat-label>-->
+<!--    <input-->
+<!--      class="primary-input"-->
+<!--      matInput placeholder="Введите поинты здоровья">-->
+<!--  </mat-form-field>-->
+
+  <mat-form-field
+    class="primary-input"
+    appearance="outline">
+    <mat-label class="label">Деньги</mat-label>
+    <input
+      class="primary-input"
+      formControlName="money"
+      matInput
+      placeholder="Введите количество ЗМ у персонажа">
+    <mat-error *ngIf="customForm.get('money')?.invalid">Ошибка</mat-error>
+  </mat-form-field>
+
+  <div class="horizontal-wrapper">
+    <button
+      class="button"
+      mat-stroked-button
+      color="accent"
+      (click)="OnBackButtonClick()"
+    >
+      Назад
+    </button>
+
+    <button
+      class="button"
+      mat-flat-button
+      color="primary"
+      (click)="OnSaveButtonClick()"
+    >
+      Сохранить
+    </button>
+  </div>
+</form>
