@@ -1,0 +1,160 @@
+<div class="panel-wrapper"
+     (click)="OnSpellClick()"
+>
+<ng-container *ngIf="!IsEditing ; else editing">
+
+  <div class=" horizontal-wrapper header-wrapper">
+    <div class="vertical-wrapper margin-sides">
+      <div class="horizontal-wrapper">
+        <h2>{{_spell.name}}</h2>
+        <div class="lvl">
+          {{_spell.lvl}}
+        </div>
+      </div>
+    </div>
+
+    <div
+      *ngIf="_spell.formula; else noDamage"
+      class="damage-container horizontal-wrapper formula"
+      (click)="OnRollClick($event)"
+    >
+      <p class="subtitle">Урон</p>
+      <p class="damage">{{_spell.formula}}</p>
+    </div>
+
+    <ng-template #noDamage>
+      <p>Нет урона</p>
+    </ng-template>
+
+    <div class="icons-container horizontal-wrapper margin-sides">
+      <mat-icon class="icon-fix clickable-icon"
+                svgIcon="edit"
+                (click)="OnEditClick($event)"
+      ></mat-icon>
+      <mat-icon class="clickable-icon"
+                [svgIcon]="_spell.favorite? 'star' : 'star-outline'"
+                (click)="OnAddToFavorite($event)"
+      ></mat-icon>
+    </div>
+  </div>
+
+  <div *ngIf="IsOpened"
+       class="more-info"
+  >
+    <div class="horizontal-wrapper">
+    <app-primary-chips class="chips"
+                       *ngIf="_spell!.attribute"
+                       [value]="_spell.attribute.name"></app-primary-chips>
+    </div>
+
+    <h3>Определение</h3>
+    <p>{{_spell.definition}}</p>
+
+    <h3>Описание</h3>
+    <p>{{_spell.description}}</p>
+  </div>
+</ng-container>
+</div>
+
+
+<ng-template #editing>
+  <Form [formGroup]="spellForm">
+    <div class="editing">
+      <mat-form-field
+        class="primary-input"
+        appearance="outline">
+        <mat-label class="label">Имя</mat-label>
+        <input
+          formControlName="name"
+          matInput
+          placeholder="Введите название навыка">
+        <mat-error *ngIf="spellForm.get('name')!.invalid">Ошибка</mat-error>
+      </mat-form-field>
+
+      <mat-form-field
+        class="primary-input additional-info"
+        appearance="outline">
+        <mat-label class="label">Уровень</mat-label>
+        <input
+          formControlName="lvl"
+          matInput
+        >
+        <mat-error *ngIf="spellForm.get('lvl')!.invalid">Ошибка</mat-error>
+      </mat-form-field>
+
+      <mat-form-field
+        class="primary-input additional-info"
+        appearance="outline">
+        <mat-label class="label">Формула</mat-label>
+        <input
+          formControlName="formula"
+          matInput
+        >
+        <mat-error *ngIf="spellForm.get('formula')!.invalid">Ошибка</mat-error>
+      </mat-form-field>
+
+      <mat-form-field
+        class="primary-input additional-info"
+        appearance="outline">
+        <mat-label class="label">Сложность</mat-label>
+        <input
+          formControlName="difficulty"
+          matInput
+        >
+        <mat-error *ngIf="spellForm.get('difficulty')!.invalid">Ошибка</mat-error>
+      </mat-form-field>
+
+      <mat-form-field *ngIf="(attr$ | async)?.length"
+                      class="primary-input attr-select"
+                      appearance="outline">
+        <mat-label class="label">Аттрибут</mat-label>
+        <mat-select formControlName="attribute">
+          <mat-option></mat-option>
+          <mat-option *ngFor="let attr of attr$ | async" [value]="attr" >
+            {{attr.name}}  {{attr.modification}}
+          </mat-option>
+        </mat-select>
+        <mat-error *ngIf="spellForm.get('attribute')?.invalid">Ошибка</mat-error>
+      </mat-form-field>
+
+
+      <mat-form-field
+        class="huge-input additional-info"
+        appearance="outline">
+        <mat-label class="label">Определение</mat-label>
+        <input
+          formControlName="definition"
+          matInput
+          placeholder="Введите краткое описание">
+        <mat-error *ngIf="spellForm.get('definition')!.invalid">Ошибка</mat-error>
+      </mat-form-field>
+
+      <mat-form-field class="huge-input" appearance="outline">
+        <mat-label>Полное описание</mat-label>
+        <textarea matInput
+                  placeholder="Добавьте подробностей при желании"
+                  formControlName="description"
+        ></textarea>
+      </mat-form-field>
+    </div>
+  </Form>
+
+  <div class="actions-group">
+    <div class="icons-container">
+      <mat-icon class="clickable-icon"
+                svgIcon="delete"
+                (click)="OnDeleteClick()"
+      ></mat-icon>
+    </div>
+    <div class="icons-container horizontal-wrapper margin-sides">
+      <mat-icon class="clickable-icon"
+                svgIcon="close"
+                (click)="OnCancelClick()"
+      ></mat-icon>
+      <mat-icon class="clickable-icon"
+                svgIcon="accept"
+                (click)="OnSaveClick()"
+      ></mat-icon>
+    </div>
+  </div>
+</ng-template>

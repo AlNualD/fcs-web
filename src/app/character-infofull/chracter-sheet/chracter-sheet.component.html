@@ -1,0 +1,82 @@
+<div *ngIf="_character; else empty"
+     class="character-container"
+>
+  <div class="horizontal-wrapper">
+    <div *ngIf="(characterService.img$ | async) as img">
+      <ng-container *ngIf="img.length > 7">
+      <img class="character-picture"
+           [src]="img"
+           (click)="OnPictureClick()"
+      >
+      </ng-container>
+    </div>
+
+    <div class="text-and-slider">
+      <div class="text-wrapper">
+        <div class="horizontal-wrapper header-with-icon">
+          <div class="horizontal-wrapper">
+            <h1 class="margin-right">{{_character.name}}</h1>
+            <div class="lvl">
+              {{_character.lvl}}
+            </div>
+          </div>
+
+          <div class="horizontal-wrapper">
+            <mat-icon class="clickable-icon"
+                      svgIcon="dice"
+                      (click)="OnCustomRoll()"
+            ></mat-icon>
+
+            <mat-icon class="clickable-icon"
+                      svgIcon="edit"
+                      (click)="OnEditClick()"
+            ></mat-icon>
+          </div>
+        </div>
+
+          <h2 class="margin-top subtitle">{{_character.classC}}</h2>
+
+          <h2 class="no-margin subtitle">{{_character.race}}</h2>
+
+          <h2 class="no-margin subtitle">{{_character.alignment}}</h2>
+
+      </div>
+
+      <div class="slider-wrapper">
+        <app-slider-with-values class="subtitle">
+        </app-slider-with-values>
+      </div>
+    </div>
+  </div>
+
+
+  <app-character-attributes-component
+    class="attributes-panel"
+    [attributes$]="characterService.getAttributes()"
+  ></app-character-attributes-component>
+
+
+  <Form>
+    <mat-form-field class="margin-top notes" appearance="outline">
+      <mat-label>Для заметок</mat-label>
+      <textarea
+        matInput
+        placeholder="Поделитесь вашими приключениями..."
+        [formControl]="notes"
+      ></textarea>
+    </mat-form-field>
+  </Form>
+</div>
+
+<ng-template #empty>
+  <p>empty</p>
+</ng-template>
+
+<ng-template #noImage>
+  <div class="horizontal-wrapper">
+    <h3>{{_character.name}}</h3>
+    <h3>{{_character.lvl}}</h3>
+  </div>
+  <h3>{{_character.race}}</h3>
+  <h3>{{_character.classC}}</h3>
+</ng-template>

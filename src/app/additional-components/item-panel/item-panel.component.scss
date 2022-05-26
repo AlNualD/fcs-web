@@ -1,0 +1,101 @@
+@import "src/app/global/mixins";
+
+.panel-wrapper:hover {
+  border-width: 4px;
+  margin-right: 2px;
+  margin-bottom: 2px;
+}
+
+.panel-wrapper {
+  @include rounded-box;
+  min-width: 400px;
+  @include vertical;
+  padding: 6px 12px;
+  margin-right: 6px;
+  margin-bottom: 6px;
+  width: var(--panels-width);
+}
+
+.header-wrapper {
+  display: flex;
+  justify-content: space-between;
+  align-items: stretch;
+}
+
+.horizontal-wrapper {
+  @include horizontal;
+}
+
+.vertical-wrapper {
+  @include vertical;
+}
+
+.icons-container {
+  align-items: center;
+}
+
+.icon-fix {
+  position: relative;
+  top: 4px;
+}
+
+.icons-container * {
+  margin: 0 2px;
+}
+
+.margin-sides {
+  margin: 0 6px;
+}
+
+.more-info {
+  border-top: 2px solid var(--primary-color);
+  padding: 8px 0;
+  margin: 10px 0 0;
+  text-align: left;
+}
+
+.stretch-and-space {
+  justify-content: space-between;
+}
+.bottom-header {
+  justify-content: left;
+  margin-top: 12px;
+}
+
+.bottom-header * {
+  margin-right: 12px;
+}
+
+.bottom-header h5 {
+  @include additional-text;
+}
+
+.subtitle {
+  font-weight: 275;
+  font-size: 14px;
+  line-height: 23px;
+}
+
+.huge-input {
+  @include max-width;
+  margin: 0 6px 0 18px;
+}
+
+.editing {
+  padding: 6px 6px 2px 0;
+}
+
+.primary-input {
+  width: 285px;
+  margin-left: 16px;
+}
+
+.actions-group {
+  margin: 6px;
+  display: flex;
+  justify-content: space-between;
+}
+
+.formula {
+  cursor: pointer;
+}

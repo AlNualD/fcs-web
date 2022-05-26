@@ -1,0 +1,50 @@
+<mat-accordion>
+  <mat-expansion-panel hideToggle>
+    <mat-expansion-panel-header class="new-padding">
+      <mat-panel-title>
+        <div class="accordion-title">
+          <h3>Атрибуты</h3>
+          <div class="accordion-subtitle">
+            <mat-icon
+              class="clickable-icon"
+              svgIcon="edit"
+              (click)="OnEditClick($event)"
+            ></mat-icon>
+          </div>
+        </div>
+      </mat-panel-title>
+    </mat-expansion-panel-header>
+    <ng-container *ngIf="attributes$ | async as attributes">
+      <div class="horizontal-wrapper">
+        <div class="vertical-wrapper">
+          <app-character-attriute-panel *ngFor="let attribute of attributes.slice(0,attributes.length / 2)" [attribute]="attribute" [IsEditing]="IsEditing.asObservable()"></app-character-attriute-panel>
+        </div>
+
+        <div class="vertical-wrapper">
+          <app-character-attriute-panel *ngFor="let attribute of attributes.slice(attributes.length / 2, attributes.length)" [attribute]="attribute" [IsEditing]="IsEditing.asObservable()"></app-character-attriute-panel>
+        </div>
+      </div>
+      <div class="horizontal-wrapper"
+           *ngIf="IsEditing | async"
+      >
+        <app-character-attriute-panel
+          *ngIf="IsAdding"
+          [attribute]="Adding | async"
+          [IsEditing]="IsEditing">
+
+        </app-character-attriute-panel>
+        <div
+          *ngIf="!IsAdding"
+          class="button-container">
+          <button
+            mat-flat-button
+            color="primary"
+            class="primary-button"
+            (click)="OnAddAttributeClick()">
+            Добавить
+          </button>
+        </div>
+      </div>
+    </ng-container>
+  </mat-expansion-panel>
+</mat-accordion>

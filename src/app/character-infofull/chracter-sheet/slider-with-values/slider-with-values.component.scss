@@ -1,0 +1,10 @@
+@import "src/app/global/mixins";
+
+.health-slider {
+  @include max-width;
+}
+
+.values-p {
+  margin-top: 0;
+}
+

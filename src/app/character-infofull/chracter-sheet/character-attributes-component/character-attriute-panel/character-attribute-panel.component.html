@@ -1,0 +1,67 @@
+<ng-container *ngIf="!(IsEditing | async) ; else edit">
+
+<div class="panel-wrapper"
+     (click)="OnRollClick()"
+>
+  <h2>{{_attribute.name}}</h2>
+
+  <div class="vertical-wrapper">
+    <div class="modif">
+      <ng-container *ngIf="_attribute.modification > 0">
+        +
+      </ng-container>
+      {{_attribute.modification}}
+    </div>
+    <div class="amount">{{_attribute.amount}}</div>
+  </div>
+</div>
+</ng-container>
+
+
+<ng-template #edit>
+  <div class="edit-wrapper"
+  >
+  <Form [formGroup]="attributeForm">
+    <mat-form-field
+      class="primary-input margin-top"
+      appearance="outline">
+      <mat-label class="label">Имя</mat-label>
+      <input
+        formControlName="name"
+        matInput
+        placeholder="Введите название">
+      <mat-error *ngIf="attributeForm.get('name')!.invalid">Ошибка</mat-error>
+    </mat-form-field>
+
+    <mat-form-field
+      class="primary-input"
+      appearance="outline">
+      <mat-label class="label">Значение</mat-label>
+      <input
+        formControlName="amount"
+        matInput
+        placeholder="Введите значение">
+      <mat-error *ngIf="attributeForm.get('amount')!.invalid">Ошибка</mat-error>
+    </mat-form-field>
+
+    <mat-checkbox
+      class="toggle margin-left"
+      formControlName="trainedSaveRoll"
+    >
+      Спасбросок
+    </mat-checkbox>
+  </Form>
+  <div class="horizontal-wrapper">
+    <div class="icons-container horizontal-wrapper margin-sides">
+      <mat-icon class="clickable-icon"
+                svgIcon="delete"
+                (click)="OnDeleteClick($event)"
+      ></mat-icon>
+      <mat-icon class="clickable-icon"
+                svgIcon="accept"
+                (click)="OnSaveClick($event)"
+      ></mat-icon>
+    </div>
+  </div>
+  </div>
+</ng-template>

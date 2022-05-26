@@ -1,0 +1,114 @@
+<div class="panel-wrapper"
+     (click)="OnItemClick()"
+>
+  <ng-container *ngIf="!IsEditing; else edit">
+
+  <div class="vertical-wrapper header-wrapper">
+    <div class="horizontal-wrapper stretch-and-space">
+      <h2>{{_item.name}}</h2>
+
+      <div class="icons-container">
+        <mat-icon class="icon-fix clickable-icon"
+                  svgIcon="edit"
+                  (click)="OnEditClick($event)"
+        ></mat-icon>
+        <mat-icon class="clickable-icon"
+                  [svgIcon]="_item.favorite? 'star' : 'star-outline'"
+                  (click)="OnAddToFavorite($event)"
+        ></mat-icon>
+      </div>
+    </div>
+
+    <div class="horizontal-wrapper bottom-header">
+      <div class="pair vertical-wrapper formula"
+           *ngIf="_item.formula"
+           (click)="OnRollClick($event)"
+      >
+        <div class="subtitle">Формула</div>
+        <h5>{{_item.formula}}</h5>
+      </div>
+
+      <div class="pair vertical-wrapper"
+           *ngIf="_item.weight"
+      >
+        <div class="subtitle">Вес</div>
+        <h5>{{_item.weight}}</h5>
+      </div>
+    </div>
+  </div>
+
+  <div class="more-info"
+       *ngIf="IsOpened"
+  >
+    <p>{{_item.definition}}</p>
+  </div>
+  </ng-container>
+</div>
+
+
+<ng-template #edit>
+  <Form [formGroup]="itemForm">
+    <div class="editing">
+      <mat-form-field
+        class="primary-input"
+        appearance="outline">
+        <mat-label class="label">Имя</mat-label>
+        <input
+          formControlName="name"
+          matInput
+          placeholder="Введите название навыка">
+        <mat-error *ngIf="itemForm.get('name')!.invalid">Ошибка</mat-error>
+      </mat-form-field>
+
+      <mat-form-field
+        class="primary-input additional-info"
+        appearance="outline">
+        <mat-label class="label">Вес</mat-label>
+        <input
+          formControlName="weight"
+          matInput
+        >
+        <mat-error *ngIf="itemForm.get('weight')!.invalid">Ошибка</mat-error>
+      </mat-form-field>
+
+      <mat-form-field
+        class="primary-input"
+        appearance="outline">
+        <mat-label class="label">Формула</mat-label>
+        <input
+          formControlName="formula"
+          matInput
+          placeholder="Введите название навыка">
+        <mat-error *ngIf="itemForm.get('formula')!.invalid">Ошибка</mat-error>
+      </mat-form-field>
+
+
+      <mat-form-field class="huge-input" appearance="outline">
+        <mat-label>Описание</mat-label>
+        <textarea matInput
+                  placeholder="Добавьте подробностей при желании"
+                  formControlName="definition"
+        ></textarea>
+      </mat-form-field>
+    </div>
+  </Form>
+
+  <div class="actions-group">
+    <div class="icons-container">
+      <mat-icon class="clickable-icon"
+                svgIcon="delete"
+                (click)="OnDeleteClick()"
+      ></mat-icon>
+    </div>
+    <div class="icons-container horizontal-wrapper margin-sides">
+      <mat-icon class="clickable-icon"
+                svgIcon="close"
+                (click)="OnCancelClick()"
+      ></mat-icon>
+      <mat-icon class="clickable-icon"
+                svgIcon="accept"
+                (click)="OnSaveClick()"
+      ></mat-icon>
+    </div>
+  </div>
+</ng-template>

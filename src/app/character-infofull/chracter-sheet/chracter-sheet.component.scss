@@ -1,0 +1,86 @@
+@import "src/app/global/mixins";
+
+:host{
+  padding-top: 12px;
+}
+
+.character-picture {
+  width: auto;
+  height: 300px;
+}
+
+@mixin horizontal() {
+  display: flex;
+  flex-direction: row;
+}
+
+.horizontal-wrapper {
+  @include horizontal;
+  align-items: stretch;
+}
+
+.horizontal-wrapper__text {
+  @include horizontal;
+}
+
+.text-wrapper {
+  text-align: left;
+}
+
+
+.slider-wrapper {
+
+}
+
+.text-and-slider {
+  margin-left: 33px;
+  margin-right: 6px;
+  width: -webkit-fill-available;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.attributes-panel {
+  width: 550px;
+}
+
+.no-margin {
+  margin: 0;
+}
+
+.margin-top {
+  margin-top: 14px;
+}
+
+.character-container {
+  margin-top: 12px;
+  margin-right: 12px;
+}
+
+.lvl {
+  @include rounded-box;
+  padding: 5px;
+  @include additional-text;
+  display: flex;
+  align-items: center;
+}
+
+.subtitle {
+  font-weight: 500;
+  font-size: 24px;
+  line-height: 28px;
+}
+
+.margin-right {
+  margin-right: 9px;
+}
+
+.notes {
+  width: -webkit-fill-available;
+}
+
+.header-with-icon {
+  justify-content: space-between;
+}

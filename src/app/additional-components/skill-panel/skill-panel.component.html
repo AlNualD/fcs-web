@@ -1,0 +1,145 @@
+<div class="panel-wrapper" (click)="OnSkillClick()">
+  <ng-container *ngIf="!IsEditing; else edit">
+  <div class="horizontal-wrapper">
+    <h2>{{_skill.name}}</h2>
+
+    <p class="additional-info">
+      {{_skill.definition}}
+    </p>
+
+    <div class="vertical-wrapper">
+      <div class="icons-container horizontal-wrapper margin-sides">
+        <mat-icon class="icon-fix clickable-icon"
+                  svgIcon="edit"
+                  (click)="OnEditClick($event)"
+        ></mat-icon>
+        <mat-icon class="clickable-icon"
+                  [svgIcon]="_skill.favorite? 'star' : 'star-outline'"
+                  (click)="OnAddToFavorite($event)"
+        ></mat-icon>
+      </div>
+
+      <div class="value formula"
+           (click)="OnRollClick($event)"
+      >
+        {{_skill.value}}
+      </div>
+    </div>
+  </div>
+  <div *ngIf="IsOpened"
+       class="more-info"
+  >
+    <div class="horizontal-wrapper">
+    <app-primary-chips class="chips"
+                       *ngIf="_skill!.attribute"
+                       [value]="_skill.attribute.name"></app-primary-chips>
+    </div>
+    <p>
+      {{_skill.description}}
+    </p>
+  </div>
+  </ng-container>
+</div>
+
+
+<ng-template #edit>
+  <Form [formGroup]="skillForm">
+    <div class="editing">
+      <mat-form-field
+        class="primary-input"
+        appearance="outline">
+        <mat-label class="label">Имя</mat-label>
+        <input
+          formControlName="name"
+          matInput
+          placeholder="Введите название навыка">
+        <mat-error *ngIf="skillForm.get('name')!.invalid">Ошибка</mat-error>
+      </mat-form-field>
+
+        <mat-form-field
+          class="primary-input additional-info"
+          appearance="outline">
+          <mat-label class="label">Значение</mat-label>
+          <input
+            formControlName="value"
+            matInput
+          >
+          <mat-error *ngIf="skillForm.get('value')!.invalid">Ошибка</mat-error>
+        </mat-form-field>
+
+      <mat-form-field *ngIf="(attr$ | async)?.length"
+        class="primary-input attr-select"
+        appearance="outline">
+        <mat-label class="label">Аттрибут</mat-label>
+        <mat-select formControlName="attribute">
+          <mat-option></mat-option>
+          <mat-option *ngFor="let attr of attr$ | async" [value]="attr" >
+            {{attr.name}}  {{attr.modification}}
+          </mat-option>
+        </mat-select>
+        <mat-error *ngIf="skillForm.get('attribute')?.invalid">Ошибка</mat-error>
+      </mat-form-field>
+
+      <mat-form-field
+        class="primary-input additional-info"
+        appearance="outline">
+        <mat-label class="label">Коэффициент тренировки</mat-label>
+        <input
+          formControlName="trainCoefficient"
+          matInput
+        >
+        <mat-error *ngIf="skillForm.get('trainCoefficient')!.invalid">Ошибка</mat-error>
+      </mat-form-field>
+
+      <div class="toggles-group">
+
+          <mat-checkbox class="toggle margin-left"
+                        formControlName="trait"
+          >Талант</mat-checkbox>
+
+          <mat-checkbox class="toggle"
+                        [formControl]="CanBeTrained"
+                        (change)="OnToggleClick()"
+          >Можно тренировать</mat-checkbox>
+      </div>
+
+      <mat-form-field
+        class="huge-input additional-info"
+        appearance="outline">
+        <mat-label class="label">Определение</mat-label>
+        <input
+          formControlName="definition"
+          matInput
+          placeholder="Введите краткое описание">
+        <mat-error *ngIf="skillForm.get('definition')!.invalid">Ошибка</mat-error>
+      </mat-form-field>
+
+      <mat-form-field class="huge-input" appearance="outline">
+        <mat-label>Полное описание</mat-label>
+        <textarea matInput
+                  placeholder="Добавьте подробностей при желании"
+                  formControlName="description"
+        ></textarea>
+      </mat-form-field>
+    </div>
+  </Form>
+
+  <div class="actions-group">
+    <div class="icons-container">
+      <mat-icon class="clickable-icon"
+                svgIcon="delete"
+                (click)="OnDeleteClick()"
+      ></mat-icon>
+    </div>
+    <div class="icons-container horizontal-wrapper margin-sides">
+      <mat-icon class="clickable-icon"
+                svgIcon="close"
+                (click)="OnCancelClick()"
+      ></mat-icon>
+      <mat-icon class="clickable-icon"
+                svgIcon="accept"
+                (click)="OnSaveClick()"
+      ></mat-icon>
+    </div>
+  </div>
+</ng-template>

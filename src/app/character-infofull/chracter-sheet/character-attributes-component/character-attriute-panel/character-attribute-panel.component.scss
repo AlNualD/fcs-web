@@ -1,0 +1,64 @@
+@import "src/app/global/mixins";
+
+.panel-wrapper {
+  @include horizontal;
+  width: 300px;
+  height: 77px;
+  @include rounded-box;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-left: 8px;
+  padding-right: 8px;
+  margin-right: 6px;
+  margin-bottom: 6px;
+}
+
+.panel-wrapper:hover {
+  border-width: 4px;
+  cursor: pointer;
+  margin-right: 2px;
+  margin-bottom: 2px;
+}
+
+.vertical-wrapper {
+  position: relative;
+  top: 6px;
+  @include vertical;
+}
+
+.amount {
+  @include rounded-box;
+  @include additional-text;
+  background: var(--background-color);
+  padding: 0 6px;
+  position: relative;
+  top: -8px;
+  font-weight: 500;
+  font-size: 22px;
+  line-height: 100%;
+}
+
+.modif {
+  @include rounded-box;
+  @include additional-text;
+  padding: 6px;
+  font-weight: 500;
+  font-size: 22px;
+  line-height: 100%;
+}
+
+.primary-input {
+  width: 250px;
+}
+
+.edit-wrapper {
+  @include rounded-box;
+  @include vertical;
+  height: auto;
+  width: auto;
+}
+
+.margin-top {
+  margin-top: 12px;
+}

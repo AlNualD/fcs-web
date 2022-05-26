@@ -1,0 +1,13 @@
+<ng-container *ngIf="hp$ | async as bundle">
+<mat-slider
+  class="health-slider"
+  thumbLabel
+  min="0"
+  max="{{bundle.hpMax}}"
+  value="{{bundle.hpCur}}"
+  tickInterval="1"
+  (input)="changeVal($event)"
+>
+</mat-slider>
+  <p class="values-p">{{bundle.hpCur}}/{{bundle.hpMax}}</p>
+</ng-container>

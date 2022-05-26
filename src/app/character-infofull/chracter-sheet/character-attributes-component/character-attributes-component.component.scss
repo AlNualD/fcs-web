@@ -1,0 +1,39 @@
+@import "src/app/global/mixins";
+
+mat-accordion {
+  cursor: default;
+}
+
+.accordion-title {
+  width: -webkit-fill-available;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+.accordion-subtitle {
+  display: flex;
+  color: var(--primary-color-2);
+  margin: 0 -10px;
+  align-items: center;
+
+}
+
+.item {
+  margin: 0 5px;
+}
+
+.new-padding {
+  padding: 0 16px;
+}
+
+.mat-expansion-panel-body {
+  padding: 0 10px 16px;
+}
+
+.horizontal-wrapper {
+  @include horizontal;
+}
+
+
+
