@@ -1,0 +1,24 @@
+<div class="dialog-wrapper">
+  <h2>Бросок кубов</h2>
+  <Form [formGroup]="formGroup">
+    <mat-form-field
+      class="primary-input"
+      appearance="outline">
+      <mat-label class="label">Формула</mat-label>
+      <input
+        formControlName="formula"
+        matInput
+        placeholder="Формула вида 1d4+2">
+      <mat-error *ngIf="formula.invalid">Ошибка</mat-error>
+    </mat-form-field>
+  </Form>
+
+  <button
+    mat-flat-button
+    color="primary"
+    (click)="onButtonClick()"
+    cdkFocusInitial
+  >
+    Бросок
+  </button>
+</div>
