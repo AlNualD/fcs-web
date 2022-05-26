@@ -1,0 +1,111 @@
+<form class="creation-main-container" [formGroup]="customForm">
+  <mat-form-field
+    class="primary-input"
+    appearance="outline">
+    <mat-label class="label">Имя</mat-label>
+    <input
+      [ngClass]="name.valid? 'primary-input' : 'primary-input-err'"
+      [formControl]="name"
+      matInput
+      placeholder="Введите имя персонажа">
+    <mat-error *ngIf="name.invalid">Ошибка</mat-error>
+  </mat-form-field>
+
+  <div class="horizontal-wrapper">
+    <mat-form-field
+      class="primary-input small-input"
+      appearance="outline">
+      <mat-label class="label">Здоровье</mat-label>
+      <input
+        class="primary-input"
+        formControlName="hp_max"
+        matInput placeholder="Введите поинты здоровья">
+      <mat-error *ngIf="hp_max.invalid">Ошибка</mat-error>
+    </mat-form-field>
+
+    <mat-form-field
+      class="primary-input small-input"
+      appearance="outline"
+      >
+      <mat-label class="label">Уровень</mat-label>
+      <input
+        class="primary-input"
+        matInput placeholder="Введите уровень"
+        formControlName="lvl"
+      >
+      <mat-error *ngIf="lvl.invalid">Ошибка</mat-error>
+    </mat-form-field>
+  </div>
+
+  <mat-form-field
+    class="primary-input"
+    appearance="outline">
+    <mat-label class="label">Класс</mat-label>
+    <input
+      class="primary-input"
+      formControlName="classC"
+      matInput
+      placeholder="Введите класс персонажа">
+    <mat-error *ngIf="classC.invalid">Ошибка</mat-error>
+  </mat-form-field>
+
+
+  <mat-form-field
+    class="primary-input"
+    appearance="outline">
+    <mat-label class="label">Раса</mat-label>
+    <input
+      class="primary-input"
+      formControlName="race"
+      matInput placeholder="Введите расу персонажа">
+    <mat-error *ngIf="race.invalid">Ошибка</mat-error>
+  </mat-form-field>
+
+  <mat-form-field
+    class="primary-input"
+    appearance="outline">
+    <mat-label class="label">Мировоззрение</mat-label>
+    <input
+      class="primary-input"
+      formControlName="alignment"
+      matInput placeholder="Введите мировоззрение персонажа">
+    <mat-error *ngIf="alignment.invalid">Ошибка</mat-error>
+  </mat-form-field>
+
+  <mat-form-field
+    class="primary-input"
+    appearance="outline">
+    <mat-label class="label">Деньги</mat-label>
+    <input
+      class="primary-input"
+      formControlName="money"
+      matInput placeholder="Введите количество ЗМ у персонажа">
+    <mat-error *ngIf="money.invalid">Ошибка</mat-error>
+  </mat-form-field>
+  <div class="horizontal-wrapper">
+  <span>Select Image</span>
+  <input #imageInput
+         type="file"
+         accept="image/*"
+         (change)="OnLoadPicture(imageInput)">
+  </div>
+
+  <div class="horizontal-wrapper">
+    <button
+      class="button"
+      mat-stroked-button
+      color="accent"
+      (click)="OnBackButtonClick()"
+      >
+      Назад
+    </button>
+
+    <button
+      (click)="OnSaveButtonClick()"
+      class="button"
+      mat-flat-button
+      color="primary">
+      Сохранить
+    </button>
+  </div>
+</form>
