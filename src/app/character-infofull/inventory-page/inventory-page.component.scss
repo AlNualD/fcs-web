@@ -1,0 +1,41 @@
+@import "src/app/global/mixins";
+
+.items-container {
+  padding-right: 6px;
+  min-height: 88vh;
+}
+
+.items-list {
+  margin-top: 6px;
+  height: auto;
+}
+
+.items-header {
+  display: flex;
+  justify-content: right;
+  align-items: center;
+  margin-top: 4px;
+  margin-bottom: 4px;
+}
+
+.huge-button {
+  @include flat-button;
+  min-width: 400px;
+  @include max-width;
+  height: 54px;
+  margin-top: 6px;
+  padding: 5px;
+  margin-right: 8px;
+}
+
+.huge-button:hover {
+  @include flat-button-hover;
+}
+
+.horizontal-wrapper {
+  @include horizontal;
+}
+
+.icon {
+  color: var(--primary-color) !important;
+}

@@ -1,0 +1,34 @@
+<div class="items-container">
+  <div class="items-header">
+    <div class="pair horizontal-wrapper">
+      <mat-icon class="icon" svgIcon="piggy"></mat-icon>
+      <h3>{{money}}</h3>
+    </div>
+    <mat-icon class="clickable-icon"
+              [svgIcon]="showFavorites? 'star' : 'star-outline'"
+              (click)="ShowFavorites()"
+    ></mat-icon>
+  </div>
+
+  <div class="items-list">
+    <ng-container *ngIf="addItem">
+      <app-item-panel
+        class="item-panel"
+        [item]="null"
+      ></app-item-panel>
+    </ng-container>
+
+    <div *ngIf="(items$ | async)?.length">
+      <app-item-panel
+        *ngFor="let item of items$ | async"
+        [item]="item"
+      ></app-item-panel>
+    </div>
+
+    <button mat-flat-button
+            color="primary"
+            class="huge-button"
+            (click)="AddItem()"
+    >Добавить</button>
+  </div>
+</div>
