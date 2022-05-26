@@ -1,0 +1,30 @@
+<div class="spells-container">
+  <div class="spells-header">
+    <mat-icon class="clickable-icon"
+              [svgIcon]="showFavorites? 'star' : 'star-outline'"
+              (click)="ShowFavorites()"
+    ></mat-icon>  </div>
+
+  <div class="spells-list">
+    <ng-container *ngIf="addSpell">
+      <app-spell-panel
+        class="skill-panel"
+        [spell]="null"
+      ></app-spell-panel>
+    </ng-container>
+
+    <div
+      *ngIf="!isEmpty">
+    <app-spell-panel
+        *ngFor="let spell of spells$ | async"
+        [spell]="spell"
+      ></app-spell-panel>
+    </div>
+
+    <button mat-flat-button
+            color="primary"
+            class="huge-button"
+            (click)="AddSpell()"
+            >Добавить</button>
+  </div>
+</div>

@@ -1,0 +1,32 @@
+@import "src/app/global/mixins";
+
+.spells-container {
+  padding-right: 6px;
+  min-height: 88vh;
+}
+
+.spells-list {
+  margin-top: 6px;
+  height: auto;
+}
+
+.spells-header {
+  display: flex;
+  justify-content: right;
+  margin-top: 4px;
+  margin-bottom: 4px;
+}
+
+.huge-button {
+  @include flat-button;
+  min-width: 400px;
+  @include max-width;
+  height: 54px;
+  margin-top: 6px;
+  padding: 5px;
+  margin-right: 8px;
+}
+
+.huge-button:hover {
+  @include flat-button-hover;
+}
