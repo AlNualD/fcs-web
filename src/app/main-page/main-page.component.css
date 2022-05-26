@@ -11,8 +11,9 @@
 .main-container {
   display: flex;
   flex-direction: row;
-  align-items: flex-start;
+  align-items: stretch;
   justify-content: center;
+  height: 97vh;
 }
 
 .fly {
