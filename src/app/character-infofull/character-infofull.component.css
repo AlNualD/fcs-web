@@ -1,12 +1,18 @@
 :host{
-  min-height: 100%;
+  background: var(--background-color);
 }
 
-div#character-container{
-  padding: 20px;
-  background: bisque;
-}
 
 span {
   color: black;
+}
+
+.tabs-group {
+  margin-left: 20px;
+  height: 97vh;
+}
+
+.character-container {
+  margin-top: 16px;
+  height: 50vh;
 }

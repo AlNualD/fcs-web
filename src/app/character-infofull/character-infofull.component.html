@@ -1,30 +1,39 @@
-<div id="character-container">
-<mat-tab-group>
-  <mat-tab>
+<div>
+<mat-tab-group class="tabs-group">
+  <mat-tab class="hide-scroll character-container">
     <ng-template mat-tab-label>
       <span>Персонаж</span>
     </ng-template>
-    <div *ngIf="curCharacter">
-      Выбран персонаж {{curCharacter.name}}
+    <div *ngIf="character$ | async as character; else empty">
+      <app-chracter-sheet class="character-container" [character]="character"></app-chracter-sheet>
+
     </div>
   </mat-tab>
   <mat-tab>
     <ng-template mat-tab-label>
       <span>Навыки</span>
     </ng-template>
-    Content 2
+
+    <app-skills-page></app-skills-page>
+
   </mat-tab>
   <mat-tab>
     <ng-template mat-tab-label>
       <span>Заклинания</span>
     </ng-template>
-    Content 3
+
+    <app-spells-page></app-spells-page>
   </mat-tab>
   <mat-tab>
     <ng-template mat-tab-label>
       <span>Инвентарь</span>
     </ng-template>
-    Content 4
+
+    <app-inventory-page></app-inventory-page>
   </mat-tab>
 </mat-tab-group>
 </div>
+
+<ng-template #empty>
+  <h2>Выберите или создайте персонажа!</h2>
+</ng-template>

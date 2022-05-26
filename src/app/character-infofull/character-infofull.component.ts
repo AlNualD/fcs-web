@@ -1,6 +1,7 @@
 import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 import {Character} from "../services/models/character";
 import {CharacterService} from "../services/character.service";
+import {Observable} from "rxjs";
 
 @Component({
   selector: 'app-character-infofull',
@@ -9,22 +10,18 @@ import {CharacterService} from "../services/character.service";
 })
 export class CharacterInfofullComponent implements OnInit {
 
-  curCharacter : Character | undefined;
+  //curCharacter : Character | undefined;
 
-  onCharacterChange(c: Character) {
-    this.curCharacter = c;
+  character$ : Observable<Character | null>;
+
+  // onCharacterChange(c: Character) {
+  //   this.curCharacter = c;
+  // }
+
+  constructor(private characterService : CharacterService) {
+    this.character$ = characterService.character;
   }
 
-  constructor(private characterService : CharacterService) { }
-
-  ngOnInit(): void {
-    this.characterService.character.subscribe(
-      (c) => {
-        if(c != null) {
-          this.curCharacter = c;
-        }
-      }
-    )
-  }
+  ngOnInit(): void { }
 
 }
