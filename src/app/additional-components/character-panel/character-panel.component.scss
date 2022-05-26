@@ -1,0 +1,57 @@
+@import "/src/app/global/mixins.scss";
+
+@mixin base-panel {
+  width: 270px;
+  height: 65px;
+  @include horizontal;
+  @include rounded-box;
+  align-items: center;
+  padding-left: 8px;
+  margin-bottom: 8px;
+}
+
+.panel-wrapper {
+  @include base-panel;
+}
+
+.panel-wrapper:hover {
+  border-width: 4px;
+  cursor: pointer;
+  margin-bottom: 4px;
+}
+
+.active-character {
+  @include base-panel;
+  border-width: 4px;
+}
+
+.active-character:hover {
+  cursor: pointer;
+}
+
+
+.lvl {
+  @include rounded-box;
+  padding: 5px;
+  @include additional-text;
+}
+
+.info {
+  @include horizontal;
+}
+
+.vertical-wrapper {
+  @include vertical;
+  align-items: flex-start;
+  margin-left: 6px;
+}
+
+.horizontal-wrapper {
+  @include horizontal;
+}
+
+.chips {
+  margin-right: 2px;
+  margin-top: 2px;
+}
+

@@ -1,0 +1,18 @@
+:host{
+  width: auto;
+  height: auto;
+  background: var(--primary-color);
+  border: 2px solid var(--primary-color);
+  border-radius: 40px;
+}
+
+.chips {
+  color: var(--background-color);
+  width: auto;
+  height: auto;
+  padding: 2px 4px;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 14px;
+  line-height: 100%;
+}

@@ -1,0 +1,19 @@
+<div [ngClass]="isActive? 'active-character' : 'panel-wrapper'">
+  <div class="lvl">
+      {{character.lvl}}
+  </div>
+
+  <div class="info">
+    <div class="vertical-wrapper">
+      <h2>{{character.name}}</h2>
+
+      <div class="horizontal-wrapper">
+        <app-primary-chips class="chips"
+                           [value]="character.race"></app-primary-chips>
+
+        <app-primary-chips class="chips"
+                           [value]="character.classC"></app-primary-chips>
+      </div>
+    </div>
+  </div>
+</div>
