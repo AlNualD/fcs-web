@@ -1,0 +1,29 @@
+@import "src/app/global/mixins";
+
+.skills-list {
+  margin-top: 6px;
+  height: auto;
+  min-height: 88vh;
+  padding-right: 6px;
+}
+
+.huge-button {
+  @include flat-button;
+  min-width: 400px;
+  @include max-width;
+  height: 54px;
+  margin-top: 6px;
+  padding: 5px;
+  margin-right: 8px;
+}
+
+.huge-button:hover {
+  @include flat-button-hover;
+}
+
+.skills-header {
+  overflow: hidden;
+  display: flex;
+  justify-content: right;
+  margin-right: 22px;
+}

@@ -1,0 +1,35 @@
+<div class="skills-container">
+  <div class="skills-header">
+    <mat-icon class="clickable-icon"
+              [svgIcon]="showFavorites? 'star' : 'star-outline'"
+              (click)="ShowFavorites()"
+    ></mat-icon>
+  </div>
+
+<div class="skills-list">
+  <ng-container *ngIf="addSkill">
+    <app-skill-panel
+      class="skill-panel"
+      [skill]="null"
+    ></app-skill-panel>
+
+  </ng-container>
+  <ng-container
+    *ngIf="!isEmpty">
+    <app-skill-panel
+      class="skill-panel"
+      *ngFor="let skill of skills$ | async"
+      [skill]="skill"
+    ></app-skill-panel>
+  </ng-container>
+
+  <button
+    class="huge-button"
+    mat-flat-button
+    color="primary"
+    (click)="AddSkill()"
+  >
+    Добавить
+  </button>
+</div>
+</div>
