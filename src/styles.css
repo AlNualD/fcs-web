@@ -6,6 +6,8 @@
   --primary-color-3: #CDB8B0;
   --secondary-color: #CDB8B0;
   --background-color: #FCF8F0;
+
+  --panels-width: 620px;
 }
 html, body {
   height: auto;
@@ -17,4 +19,59 @@ body {
 
 p, h1, h2, h3, h4, h5, h6 {
   color: var(--primary-color);
+  margin: 0;
 }
+
+.mat-expansion-panel {
+  background: var(--background-color) !important;
+}
+
+.mat-expansion-panel-body {
+  padding: 0 10px 16px !important;
+}
+
+.ng-star-inserted {
+  color: var(--primary-color)!important;
+}
+
+.mat-form-field-flex:hover {
+  color: var(--primary-color) !important;
+}
+
+.label {
+  color: var(--primary-color-2);
+}
+.primary-input{
+  width: 300px;
+  color: var(--primary-color)
+}
+
+.primary-input-err {
+  border-color: red !important;
+}
+.hide-scroll {
+  overflow: auto;
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+.hide-scroll::-webkit-scrollbar {
+  width: 0;
+  height: 0;
+}
+
+.round {
+  background: var(--background-color);
+  border-radius: 100px;
+  box-shadow: 0 0 0 3px var(--primary-color), 0 0 13px #333;
+}
+
+.clickable-icon {
+  color: var(--primary-color-2);
+}
+
+.clickable-icon:hover {
+  cursor: pointer;
+  color: var(--primary-color);
+}
+
