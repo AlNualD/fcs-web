@@ -6,6 +6,7 @@ import {MatDialog} from "@angular/material/dialog";
 import {ChooseDialogComponent} from "../create-character/choose.dialog/choose-dialog.component";
 import {Router} from "@angular/router";
 import {AsyncSubject, takeUntil} from "rxjs";
+import {AuthService} from "../services/auth.service";
 
 @Component({
   selector: 'app-character-list',
@@ -35,6 +36,7 @@ export class CharacterListComponent implements OnInit, OnDestroy {
   }
 
   constructor(private characterService : CharacterInfoProviderService,
+              private authService : AuthService,
               private curCharacterService : CharacterService,
               public dialog: MatDialog,
               private router: Router) { }
@@ -42,7 +44,7 @@ export class CharacterListComponent implements OnInit, OnDestroy {
   userId: number = 1;
 
   ngOnInit(): void {
-    this.characterService.getCharactersList(1).subscribe((data:any) => this.characters=data);
+    this.characterService.getCharactersList(this.authService.id!).subscribe((data:any) => this.characters=data);
     this.curCharacterService
       .character
       .pipe(
