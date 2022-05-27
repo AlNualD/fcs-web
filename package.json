@@ -3,10 +3,11 @@
   "version": "0.0.0",
   "scripts": {
     "ng": "ng",
-    "start": "ng serve --proxy-config proxy.conf.json",
+    "start": "node server.js",
     "build": "ng build",
     "watch": "ng build --watch --configuration development",
-    "test": "ng test"
+    "test": "ng test",
+    "heroku-postbuild": "ng build --prod"
   },
   "private": true,
   "dependencies": {
@@ -21,9 +22,14 @@
     "@angular/platform-browser-dynamic": "~13.1.0",
     "@angular/router": "~13.1.0",
     "dropbox": "^10.30.0",
+    "express": "^4.18.1",
+    "http-proxy-middleware": "^2.0.6",
     "ngx-cookie-service": "^13.2.0",
+    "path": "^0.12.7",
     "rxjs": "~7.4.0",
     "tslib": "^2.3.0",
+    "webpack": "^5.72.1",
+    "webpack-dev-server": "^4.9.0",
     "zone.js": "~0.11.4"
   },
   "devDependencies": {
@@ -43,5 +49,9 @@
   "browser": {
     "crypto": false,
     "util": false
+  },
+  "engines": {
+    "node": "14.17.5",
+    "npm": "8.3.1"
   }
 }

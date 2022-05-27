@@ -36,7 +36,7 @@ export class AuthService {
   tokens : AuthResponse[] =[];
 
   constructor(private readonly httpClient : HttpClient,
-              private readonly cookieService: CookieService
+              private readonly cookieService: CookieService,
   ) { }
 
   public requestRegister(user : User) {

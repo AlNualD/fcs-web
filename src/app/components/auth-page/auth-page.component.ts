@@ -1,8 +1,9 @@
 import {Component, OnInit} from '@angular/core';
-import {AbstractControl, FormControl, FormGroup} from "@angular/forms";
+import {AbstractControl, FormControl, FormGroup, Validators} from "@angular/forms";
 import {AuthService, statuses} from "../../services/auth.service";
 import {User} from "../../services/models/user";
 import {Router} from "@angular/router";
+import {MatSnackBar} from "@angular/material/snack-bar";
 
 @Component({
   selector: 'app-auth-page',
@@ -15,21 +16,23 @@ export class AuthPageComponent implements OnInit {
   curState = states.login;
   states = states;
 
-  login = new FormControl(null);//, Validators.required);
+  login = new FormControl(null, Validators.required);
   name = new FormControl(null);//, this.registerNameValidator);
-  password = new FormControl(null);//, Validators.required);
+  password = new FormControl(null, Validators.required);
   confirmPassword = new FormControl(null);//, this.passwordValidator);
 
   status : statuses = statuses.Unauthorized;
 
   constructor(private readonly authService : AuthService,
-              private readonly router : Router) { }
+              private readonly router : Router,
+              private _snackBar: MatSnackBar,
+  ) { }
 
   group: FormGroup = new FormGroup({
     login : this.login,
     name : this.name,
     password: this.password,
-    confirmPassword: this.confirmPassword
+    //confirmPassword: this.confirmPassword
   })
 
 
@@ -45,7 +48,7 @@ export class AuthPageComponent implements OnInit {
         return {"name": false};
     }
 
-    if(control === null || control === undefined || control.value === undefined || control.value === null) {
+    if(control.value === undefined || control.value === null) {
       console.log("2");
       return {"name": true};
     }
@@ -60,7 +63,7 @@ export class AuthPageComponent implements OnInit {
     if(control.disabled || !control.touched) {
       return null;
     }
-    if(control === null || control === undefined || control.value === undefined || control.value === null)
+    if(control.value === undefined || control.value === null)
        return {"password": true};
     if(this.password.value != this.confirmPassword.value)
       return {"password": true, "confirmPassword" : true};
@@ -76,6 +79,9 @@ export class AuthPageComponent implements OnInit {
     }
     this.authService.status.subscribe(
       value => {
+        if(this.status == statuses.Wait && value == statuses.Unauthorized) {
+          this._snackBar.open("Вы успешно зарегистрированы и можете войти", "Ок")
+        }
         this.status = value;
         if(value == statuses.Authorized) {
             this.router.navigate(['/main']);
