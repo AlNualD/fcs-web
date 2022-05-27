@@ -41,10 +41,10 @@ export class SpellPanelComponent implements OnInit {
     "definition":	new FormControl(),
     "description":	new FormControl(),
     "formula":	new FormControl(),
-    "lvl":	new FormControl(null, Validators.pattern("#^[0-9]+$#")),
+    "lvl":	new FormControl(null, Validators.pattern("#[0-9]*")),
     "favorite":	new FormControl(false),
     "attribute":	new FormControl(null),
-    "difficulty": new FormControl(null, Validators.pattern("#^[0-9]+$#"))
+    "difficulty": new FormControl(null, Validators.pattern("#[0-9]*"))
   });
 
   constructor(private readonly characterService : CharacterService,

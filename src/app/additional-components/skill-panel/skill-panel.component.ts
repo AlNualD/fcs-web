@@ -47,7 +47,7 @@ export class SkillPanelComponent implements OnInit {
     "trainCoefficient": new FormControl(),
     "canBeTrained":	this.CanBeTrained,
     "attribute": new FormControl(),
-    "value": new FormControl(null, Validators.pattern("#^[0-9]+$#")),
+    "value": new FormControl(null, Validators.pattern("#[0-9]*")),
     "definition":	new FormControl(),
     "description":	new FormControl(),
     "favorite":	new FormControl(),
